@@ -1,4 +1,4 @@
-from src.Sorting.Quicksort import quickSort
+from src.sorting.quicksort import quickSort
 from random import shuffle
 import pytest
 

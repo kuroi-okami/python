@@ -1,5 +1,5 @@
 import pytest
-from src.Sorting.InsertionSort import InsertionSort
+from src.sorting.insertion_sort import InsertionSort
 from random import shuffle
 
 

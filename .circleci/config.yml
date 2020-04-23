@@ -1,0 +1,28 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          command: >
+              python -m pytest --junitxml=artifacts/tests/result-xml/result.xml
+              --html=artifacts/tests/report-html/index.html
+              --cov=./src --cov-report=html:artifacts/tests/coverage-html --no-cov-on-fail --cov-fail-under 80
+              ./test
+          name: Test
+      - store_test_results:
+          path: artifacts/tests/result-xml
+      - store_artifacts:
+          path: artifacts
+workflows:
+  main:
+    jobs:
+      - build-and-test
