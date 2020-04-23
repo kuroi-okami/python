@@ -1,6 +1,8 @@
-from src.sorting.quicksort import quickSort
 from random import shuffle
+
 import pytest
+
+from src.sorting.quicksort import quickSort
 
 
 class TestQuicksort:

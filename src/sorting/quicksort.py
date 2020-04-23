@@ -1,5 +1,5 @@
-from typing import List
 from math import floor
+from typing import List
 
 
 def _medianOf3(arr: List, begin: int, end: int) -> (int, int):
@@ -52,7 +52,10 @@ def _partition(arr: List, begin: int, end: int) -> int:
             arr[tortoise], arr[hare] = arr[hare], arr[tortoise]
             tortoise += 1
 
-    arr[tortoise], arr[pivot_index] = arr[pivot_index], arr[tortoise]  # Restore the pivot
+    arr[tortoise], arr[pivot_index] = (
+        arr[pivot_index],
+        arr[tortoise],
+    )  # Restore the pivot
     return tortoise
 
 
@@ -79,5 +82,5 @@ def quickSort(arr: List) -> None:
     _recursiveQuickSort(arr, 0, len(arr) - 1)
 
 
-if __name__ == '__main__':
-    raise NotImplemented("There is no main programme")
+if __name__ == "__main__":
+    raise NotImplementedError("There is no main programme")

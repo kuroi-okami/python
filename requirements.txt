@@ -2,3 +2,8 @@ pytest
 pytest-html
 pytest-cov
 pytest-xdist
+pylint
+pylint-exit
+pylint-json2html
+isort
+black

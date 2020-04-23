@@ -1,6 +1,8 @@
-import pytest
-from src.sorting.insertion_sort import InsertionSort
 from random import shuffle
+
+import pytest
+
+from src.sorting.insertion_sort import InsertionSort
 
 
 class TestQuickSort:

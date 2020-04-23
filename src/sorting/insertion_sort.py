@@ -1,5 +1,5 @@
-from typing import List
 from random import shuffle
+from typing import List
 
 
 def InsertionSort(arr: List):
@@ -13,5 +13,5 @@ def InsertionSort(arr: List):
                 break
 
 
-if __name__ == '__main__':
-    raise NotImplemented("There is no main programme")
+if __name__ == "__main__":
+    raise NotImplementedError("There is no main programme")

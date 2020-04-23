@@ -4,26 +4,69 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
+  run-tests:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
       - python/install-deps
-      - python/save-cache
       - run:
           command: >
-              python -m pytest -n 3
-              --junitxml=artifacts/tests/result-xml/result.xml
-              --html=artifacts/tests/report-html/index.html
-              --cov=./src --cov-report=html:artifacts/tests/coverage-html --no-cov-on-fail --cov-fail-under 80
-              ./test
-          name: Test
+            pytest -n4
+            --junitxml=artifacts/tests/result-xml/result.xml
+            --html=artifacts/tests/report-html/index.html
+            --cov=./src --cov-report=html:artifacts/tests/coverage-html --no-cov-on-fail --cov-fail-under 80
+            ./test
+          name: Execute tests
       - store_test_results:
           path: artifacts/tests/result-xml
       - store_artifacts:
           path: artifacts
+
+  static-analysis:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-deps
+      - run:
+          command: >
+            mkdir -p artifacts/tests/static-analysis;
+            pylint -j4 --output-format=json src test |
+            pylint-json2html -o artifacts/tests/static-analysis/pylint.html || pylint-exit -efail $?
+          name: Run static analysis
+      - store_artifacts:
+          path: artifacts/tests/static-analysis/
+
+  auto-format:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-deps
+      - run:
+          command: |
+            isort src/**/*.py test/**/*.py
+            black src test
+            if [[ -z $(git status -s) ]]
+            then
+              echo "No formatting required"
+            else
+              git config --global user.email "williamparr96@outlook.com"
+              git config --global user.name "CircleCI"
+              git add -u
+              git commit -m "[CI-$CIRCLE_BUILD_NUM] Apply automated formatting"
+              git push origin $CIRCLE_BRANCH
+              exit 1
+            fi
+          name: Apply automated formatting
+
 workflows:
   main:
     jobs:
-      - build-and-test
+      - auto-format:
+          filters:
+            branches:
+              ignore:
+                - master
+      - static-analysis
+      - run-tests:
+          requires:
+            - static-analysis
