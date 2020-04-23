@@ -13,7 +13,8 @@ jobs:
       - python/save-cache
       - run:
           command: >
-              python -m pytest --junitxml=artifacts/tests/result-xml/result.xml
+              python -m pytest -n 3
+              --junitxml=artifacts/tests/result-xml/result.xml
               --html=artifacts/tests/report-html/index.html
               --cov=./src --cov-report=html:artifacts/tests/coverage-html --no-cov-on-fail --cov-fail-under 80
               ./test
