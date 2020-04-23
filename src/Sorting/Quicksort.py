@@ -28,7 +28,7 @@ def _medianOf3(arr: List, begin: int, end: int) -> (int, int):
         arr[center], arr[end] = arr[end], arr[center]
 
     arr[center], arr[end - 1] = arr[end - 1], arr[center]
-    return arr[end - 1], end-1  # Pivot is not at end - 1
+    return arr[end - 1], end - 1  # Pivot is not at end - 1
 
 
 def _partition(arr: List, begin: int, end: int) -> int:
