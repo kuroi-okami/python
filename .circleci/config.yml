@@ -5,7 +5,9 @@ orbs:
 
 jobs:
   run-tests:
-    executor: python/default
+    executor:
+      name: python/default
+      tag: "3.6"
     steps:
       - checkout
       - python/install-deps
@@ -23,7 +25,9 @@ jobs:
           path: artifacts
 
   static-analysis:
-    executor: python/default
+    executor:
+      name: python/default
+      tag: "3.6"
     steps:
       - checkout
       - python/install-deps
@@ -37,7 +41,9 @@ jobs:
           path: artifacts/tests/static-analysis/
 
   auto-format:
-    executor: python/default
+    executor:
+      name: python/default
+      tag: "3.6"
     steps:
       - checkout
       - python/install-deps
