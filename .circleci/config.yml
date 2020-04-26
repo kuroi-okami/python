@@ -34,7 +34,7 @@ jobs:
       - run:
           command: >
             mkdir -p artifacts/tests/static-analysis;
-            pylint -j4 --output-format=json src test |
+            pylint src test |
             pylint-json2html -o artifacts/tests/static-analysis/pylint.html || pylint-exit -efail $?
           name: Run static analysis
       - store_artifacts:
