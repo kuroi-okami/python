@@ -34,8 +34,9 @@ jobs:
       - run:
           command: >
             mkdir -p artifacts/tests/static-analysis;
-            pylint src test |
-            pylint-json2html -o artifacts/tests/static-analysis/pylint.html || pylint-exit -efail $?
+            LINT_EXIT=$(pylint src test > report.json; echo $?);
+            sed -r -n -e '/\[/,${p}' report.json | pylint-json2html -o artifacts/tests/static-analysis/pylint.html;
+            pylint-exit -efail $LINT_EXIT
           name: Run static analysis
       - store_artifacts:
           path: artifacts/tests/static-analysis/
