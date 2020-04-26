@@ -4,7 +4,6 @@ from src.games.space_invaders.settings import Settings
 
 
 class SpaceInvaders:
-
     def __init__(self):
         pygame.init()
         self._settings = Settings()
@@ -35,5 +34,5 @@ class SpaceInvaders:
         pygame.display.update()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     SpaceInvaders().run()
