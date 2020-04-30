@@ -7,3 +7,4 @@ pylint-exit
 pylint-json2html
 isort
 black
+flash
