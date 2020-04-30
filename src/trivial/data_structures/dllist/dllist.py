@@ -1,4 +1,4 @@
-from src.data_structures.dllist.dlllist_node import DlListNode
+from src.trivial.data_structures.dllist.dlllist_node import DlListNode
 
 
 class DllList():
