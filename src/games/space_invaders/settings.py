@@ -1,6 +1,6 @@
 class Settings:
     def __init__(self):
-        self.title = "Space Invaders"
+        self.title = "Space invaders"
         self.icon = "assets/ufo.gif"
 
         self.resolution = (640, 480)
