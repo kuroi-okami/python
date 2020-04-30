@@ -28,6 +28,6 @@ def remove_dups(input_str: str) -> str:
         return input_str
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = [remove_dups("aabbaaccab"), remove_dups("asd"), remove_dups("AAb")]
     print("\n".join([output_str for output_str in test]))

@@ -7,7 +7,11 @@ class SpriteSheet(ABC):
         self.sprite_sheet = None
 
     @abstractmethod
-    def get_strip_n(self: 'SpriteSheet', position: Tuple[int, int, int, int], resolution: Tuple[int, int]):
+    def get_strip_n(
+        self: "SpriteSheet",
+        position: Tuple[int, int, int, int],
+        resolution: Tuple[int, int],
+    ):
         """
             position:
                 X Origin

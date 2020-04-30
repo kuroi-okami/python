@@ -15,11 +15,7 @@ class Invader:
         self.object = pygame.rect.Rect(position)
 
     def draw(self, screen):
-        self.object = pygame.draw.rect(
-            screen,
-            self.type.value,
-            self.object
-        )
+        self.object = pygame.draw.rect(screen, self.type.value, self.object)
 
     def move(self, origin):
         self.object.move_ip(origin[0], origin[1])
@@ -32,7 +28,10 @@ class Fleet:
         offset = (offset + resolution[0], 0)
         self.fleet = []
         for i in range(number):
-            offset_origin = (self.origin[0] + i * offset[0], self.origin[1] + i * offset[1])
+            offset_origin = (
+                self.origin[0] + i * offset[0],
+                self.origin[1] + i * offset[1],
+            )
             self.fleet.append(Invader(kind, resolution, offset_origin))
 
     def draw(self, screen):

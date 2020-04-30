@@ -1,7 +1,11 @@
 import pygame
 from sys import exit
 from src.games.space_invaders.settings import Settings
-from src.games.space_invaders.models.invaders.invaders import Invader, InvaderType, Fleet
+from src.games.space_invaders.models.invaders.invaders import (
+    Invader,
+    InvaderType,
+    Fleet,
+)
 from enum import Enum, auto
 from threading import Timer
 import logging
@@ -64,7 +68,7 @@ class SpaceInvaders:
         logging.info("Callback to move fleet handled")
         self._screen.fill(self._settings.background)
 
-        [x.shift_origin((20, 0)) for x in  self.fleets]
+        [x.shift_origin((20, 0)) for x in self.fleets]
         self._draw_fleets()
 
         self.timer = Timer(1, self._move_fleet)
