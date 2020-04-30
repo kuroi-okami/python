@@ -2,7 +2,7 @@ from random import shuffle
 
 import pytest
 
-from src.trivial.sorting import quickSort
+from src.trivial.sorting.quicksort import quickSort
 
 
 class TestQuicksort:
